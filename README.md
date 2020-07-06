@@ -3,7 +3,7 @@ Snowflake-Mapbox integration using External Functions
 
 ## Deploying
 
-Clone the repo then call, then edit `serverless.yml` with your snowflake account info, then:
+Clone the repo, then edit `serverless.yml` with your snowflake account info, then:
 
 ```
 sls deploy
