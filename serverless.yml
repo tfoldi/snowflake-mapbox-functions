@@ -1,0 +1,41 @@
+service: snowflake-mapbox-functions
+
+plugins:
+  - serverless-snowflake-external-function-plugin
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+# you can overwrite defaults here
+#  stage: dev
+  region: us-west-2
+  environment:
+    MAPBOX_ACCESS_TOKEN: ${env:MAPBOX_ACCESS_TOKEN}
+
+
+custom:
+  snowflake:
+    role: ACCOUNTADMIN
+    account: starschema
+    username: tfoldi
+    password: ${env:SNOWFLAKE_PASSWORD}
+    warehouse: LOAD_WH
+    database: TEST_DB
+    schema: PUBLIC
+
+functions:
+  calc_distance:
+    handler: handler.calcDistance
+
+    snowflake:
+      argument_signature: (with_profile varchar,coorda varchar,coordb varchar)
+      data_type: variant
+
+    events:
+      - http:
+          path: calc_distance
+          method: post 
+          authorizer: aws_iam
+
