@@ -28,4 +28,4 @@ which should return with:
 
 BSD-3-Clause
 
-All rights reserved, Tamas Foldi, Starschema, 2020.
+All rights reserved, Matyas Budavari, Tamas Foldi, Starschema, 2020.
